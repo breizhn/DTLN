@@ -1,5 +1,5 @@
 # Dual-signal Transformation LSTM Network
-Implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise supression.
+Implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise suppression.
 
 
 This model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) of Interspeech 2020. 
@@ -30,10 +30,10 @@ The following packages will be required for this repository:
 * wavinfo 
 
 
-All addtional packages (numpy, soundfile, etc.) should be installed on the fly when using conda or pip. I recommend using conda enviroments or [pyenv](https://github.com/pyenv/pyenv) [virtualenv](https://github.com/pyenv/pyenv-virtualenv) for the python enviroment. For training a GPU with at least 5 GB of memory is required and Cuda 10.1 together with at least the Nvidia driver 418. If you use conda Cuda will be installed on the fly and you just need the driver. For evaluation only the CPU version of Tensorflow is enough. Everything was tested on Ubuntu 18.04.
+All additional packages (numpy, soundfile, etc.) should be installed on the fly when using conda or pip. I recommend using conda environments or [pyenv](https://github.com/pyenv/pyenv) [virtualenv](https://github.com/pyenv/pyenv-virtualenv) for the python environment. For training a GPU with at least 5 GB of memory is required and Cuda 10.1 together with at least the Nvidia driver 418. If you use conda Cuda will be installed on the fly and you just need the driver. For evaluation only the CPU version of Tensorflow is enough. Everything was tested on Ubuntu 18.04.
 
 
 ### Training data preparation (Files will be uploaded later):
 
-The training data used for this model can be downloaded from the DNS-Challenge [repository](https://github.com/microsoft/DNS-Challenge). Before cloning the repository make sure 'git-lfs' is installed. Copy the files from the folder DataPrep in this repository to the downloaded repo. The files containing the correct data configuration for this training setup and the naming convention in the creation sript is changed to name noisy, speech and noise files the same. After this, run the script split_corpus.py to split the data in tarining and validation set. An 80:20 split is applied. 
+The training data used for this model can be downloaded from the DNS-Challenge [repository](https://github.com/microsoft/DNS-Challenge). Before cloning the repository make sure 'git-lfs' is installed. Copy the files from the folder DataPrep in this repository to the downloaded repo. The files containing the correct data configuration for this training setup and the naming convention in the creation script is changed to name noisy, speech and noise files the same. After this, run the script split_corpus.py to split the data in training and validation set. An 80:20 split is applied. 
   
