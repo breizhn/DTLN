@@ -19,7 +19,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
   Script to run the training. Before you can start the training with `$ python run_training.py`you have to set the paths to you training and validation data inside the script. The training script uses a default setup.
 * run_evaluation.py \
   Script to process a folder with optional subfolders containing .wav files with a trained DTLN model. With the pretrained model delivered with this repository a folder can be processed as following: \
-  `$ python run_evaluation.py -i /path/to/input/folder -o /path/for/processed/files -m ./pretrained_model/model.h5` \
+  `$ python run_evaluation.py -i /path/to/input -o /path/for/processed -m ./pretrained_model/model.h5` \
   The evaluation script will create the new folder with the same structure as the input folder and the files will have the same name as the input files.
 
 ### Python dependencies:
@@ -35,5 +35,5 @@ All additional packages (numpy, soundfile, etc.) should be installed on the fly 
 
 ### Training data preparation (Files will be uploaded later):
 
-The training data used for this model can be downloaded from the DNS-Challenge [repository](https://github.com/microsoft/DNS-Challenge). Before cloning the repository make sure 'git-lfs' is installed. Copy the files from the folder DataPrep in this repository to the downloaded repo. The files containing the correct data configuration for this training setup and the naming convention in the creation script is changed to name noisy, speech and noise files the same. After this, run the script split_corpus.py to split the data in training and validation set. An 80:20 split is applied. 
+The training data used for this model can be downloaded from the DNS-Challenge [repository](https://github.com/microsoft/DNS-Challenge). Before cloning the repository make sure `git-lfs` is installed. Copy the files from the folder DataPrep in this repository to the downloaded repo. The files containing the correct data configuration for this training setup and the naming convention in the creation script is changed to name noisy, speech and noise files the same. After this, run the script split_corpus.py to split the data in training and validation set. An 80:20 split is applied. 
   
