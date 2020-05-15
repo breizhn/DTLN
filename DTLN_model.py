@@ -167,7 +167,7 @@ class DTLN_model():
 
         # calculating the SNR
         snr = tf.reduce_mean(tf.math.square(s_true), axis=-1, keepdims=True) / \
-            (tf.reduce_mean(tf.math.square(s_true-s_estimate), axis=-1, keepdims=True))
+            (tf.reduce_mean(tf.math.square(s_true-s_estimate), axis=-1, keepdims=True)+1e-7)
         # using some more lines, because TF has no log10
         num = tf.math.log(snr) 
         denom = tf.math.log(tf.constant(10, dtype=num.dtype))
