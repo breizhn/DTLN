@@ -25,15 +25,29 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ### Python dependencies:
 
 The following packages will be required for this repository:
-* tensorflow (2.X)
+* tensorflow (2.x)
 * librosa
 * wavinfo 
 
 
-All additional packages (numpy, soundfile, etc.) should be installed on the fly when using conda or pip. I recommend using conda environments or [pyenv](https://github.com/pyenv/pyenv) [virtualenv](https://github.com/pyenv/pyenv-virtualenv) for the python environment. For training a GPU with at least 5 GB of memory is required and Cuda 10.1 together with at least the Nvidia driver 418. If you use conda Cuda will be installed on the fly and you just need the driver. For evaluation only the CPU version of Tensorflow is enough. Everything was tested on Ubuntu 18.04.
+All additional packages (numpy, soundfile, etc.) should be installed on the fly when using conda or pip. I recommend using conda environments or [pyenv](https://github.com/pyenv/pyenv) [virtualenv](https://github.com/pyenv/pyenv-virtualenv) for the python environment. For training a GPU with at least 5 GB of memory is required and Cuda 10.1 together with at least the Nvidia driver 418. If you use conda Cuda will be installed on the fly and you just need the driver. For evaluation-only the CPU version of Tensorflow is enough. Everything was tested on Ubuntu 18.04.
 
 
-### Training data preparation (Files will be uploaded later):
+### Training data preparation:
+1. Clone the forked DNS-Challenge [repository](https://github.com/breizhn/DNS-Challenge). Before cloning the repository make sure `git-lfs` is installed. Also make sure your disk has enough space. I recommend downloading the data to a SSD for faster dataset creation.
 
-The training data used for this model can be downloaded from the DNS-Challenge [repository](https://github.com/microsoft/DNS-Challenge). Before cloning the repository make sure `git-lfs` is installed. Copy the files from the folder DataPrep in this repository to the downloaded repo. The files containing the correct data configuration for this training setup and the naming convention in the creation script is changed to name noisy, speech and noise files the same. After this, run the script split_corpus.py to split the data in training and validation set. An 80:20 split is applied. 
+2. Run `noisyspeech_synthesizer_multiprocessing.py` to create the dataset. `noisyspeech_synthesizer.cfg`was changed according to my training setup used for the DNS-Challenge. 
+
+3. Run `split_dns_corpus.py`to divide the dataset in training and validation data. The classic 80:20 split is applied. This file was added to the forked repository by me.
+
+### Run a training of the DTLN model:
+1. Make sure all dependencies are installed in your python environment.
+
+2. Change the paths to your training and validation dataset in `run_training.py`.
+
+3. Run `$ python run_training.py`. 
+
+One epoch takes around 21 minutes on a Nvidia RTX 2080 Ti when loading the training data from an SSD. 
+
+
   
