@@ -15,7 +15,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ---
 ### Contents of the repository:
 
-*  **DTLN_model.py:** \
+*  **DTLN_model.py** \
   This file is containing the model, data generator and the training routine.
 *  **run_training.py** \
   Script to run the training. Before you can start the training with `$ python run_training.py`you have to set the paths to you training and validation data inside the script. The training script uses a default setup.
@@ -40,7 +40,7 @@ All additional packages (numpy, soundfile, etc.) should be installed on the fly 
 ---
 ### Training data preparation:
 
-1. Clone the forked DNS-Challenge [repository](https://github.com/breizhn/DNS-Challenge). Before cloning the repository make sure `git-lfs` is installed. Also make sure your disk has enough space. I recommend downloading the data to a SSD for faster dataset creation.
+1. Clone the forked DNS-Challenge [repository](https://github.com/breizhn/DNS-Challenge). Before cloning the repository make sure `git-lfs` is installed. Also make sure your disk has enough space. I recommend downloading the data to an SSD for faster dataset creation.
 
 2. Run `noisyspeech_synthesizer_multiprocessing.py` to create the dataset. `noisyspeech_synthesizer.cfg`was changed according to my training setup used for the DNS-Challenge. 
 
