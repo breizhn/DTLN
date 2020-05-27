@@ -26,7 +26,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
   `$ python run_evaluation.py -i /path/to/input -o /path/for/processed -m ./pretrained_model/model.h5` \
   The evaluation script will create the new folder with the same structure as the input folder and the files will have the same name as the input files.
 * **measure_execution_time.py** \
-  Script for measuring the execution time with the saved DTLN model in `./dtln_saved_model/`. For further information see the section Measuring execution time.
+  Script for measuring the execution time with the saved DTLN model in `./dtln_saved_model/`. For further information see this [section](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format).
 *  **pretrained_model/model.h5** \
   The model weights as used in the DNS-Challenge DTLN model.
 
