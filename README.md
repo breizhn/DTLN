@@ -25,6 +25,8 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
   Script to process a folder with optional subfolders containing .wav files with a trained DTLN model. With the pretrained model delivered with this repository a folder can be processed as following: \
   `$ python run_evaluation.py -i /path/to/input -o /path/for/processed -m ./pretrained_model/model.h5` \
   The evaluation script will create the new folder with the same structure as the input folder and the files will have the same name as the input files.
+* **measure_execution_time.py** \
+  Script for measuring the execution time with the saved DTLN model in `./dtln_saved_model/`. For further information see the section Measuring execution time.
 *  **pretrained_model/model.h5** \
   The model weights as used in the DNS-Challenge DTLN model.
 
@@ -59,5 +61,58 @@ All additional packages (numpy, soundfile, etc.) should be installed on the fly 
 
 One epoch takes around 21 minutes on a Nvidia RTX 2080 Ti when loading the training data from an SSD. 
 
+---
+### Measuring the execution time of the DTLN model with the SavedModel format:
 
-  
+In total there are three ways to measure the execution time for one block of the model: Runing a sequence in Keras and dividing by the number of blocks in the sequence, building a stateful model in Keras and running block by block, and saving the stateful model in Tensorflow's saved model format and calling that one block by block. In the following I will explain how running the model in the SavedModel format, because it is the most portable version and can also be called from Tensorflow Serving.
+
+A Keras model can be saved to the saved model format:
+```python
+import tensorflow as tf
+'''
+Building some model here
+'''
+tf.saved_model.save(your_keras_model, 'name_save_path')
+```
+Important here for real time block by block processing is, to make the LSTM layer stateful, so they can remember the states from the previous block.
+
+The model can be imported with 
+```python
+model = tf.saved_model.load('name_save_path’)
+```
+
+For inference we now first call this for mapping signature names to functions
+```python
+infer = model.signatures[‘serving_default’]
+```
+
+and now for infiring the block `x` call
+```python
+y = infer(tf.constant(x))['conv1d_1']
+```
+This command gives you the result on the node `'conv1d_1'`which is our output node for real time processing. For more information on using the SavedModel format and obtaining the output node see this [Guide](https://www.tensorflow.org/guide/saved_model).
+
+For making everything easier this repository provides a stateful DTLN SavedModel. 
+For measuring the execution time call:
+```
+$ python measure_execution_time.py
+```
+When measuring with TF 2.2 following results were obtained:
+System | Prozessor | #Cores | Execution Time 
+--- | --- | --- | ---
+Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms
+Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms 
+Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
+
+
+---
+### Citing:
+
+
+```
+@article{westhausen2020dual,
+  title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
+  author={Westhausen, Nils L and Meyer, Bernd T},
+  journal={arXiv preprint arXiv:2005.07551},
+  year={2020}
+}
