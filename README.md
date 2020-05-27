@@ -86,7 +86,7 @@ For inference we now first call this for mapping signature names to functions
 infer = model.signatures[‘serving_default’]
 ```
 
-and now for infiring the block `x` call
+and now for inferring the block `x` call
 ```python
 y = infer(tf.constant(x))['conv1d_1']
 ```
