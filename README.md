@@ -64,7 +64,7 @@ One epoch takes around 21 minutes on a Nvidia RTX 2080 Ti when loading the train
 ---
 ### Measuring the execution time of the DTLN model with the SavedModel format:
 
-In total there are three ways to measure the execution time for one block of the model: Runing a sequence in Keras and dividing by the number of blocks in the sequence, building a stateful model in Keras and running block by block, and saving the stateful model in Tensorflow's saved model format and calling that one block by block. In the following I will explain how running the model in the SavedModel format, because it is the most portable version and can also be called from Tensorflow Serving.
+In total there are three ways to measure the execution time for one block of the model: Running a sequence in Keras and dividing by the number of blocks in the sequence, building a stateful model in Keras and running block by block, and saving the stateful model in Tensorflow's SavedModel format and calling that one block by block. In the following I will explain how running the model in the SavedModel format, because it is the most portable version and can also be called from Tensorflow Serving.
 
 A Keras model can be saved to the saved model format:
 ```python
