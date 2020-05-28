@@ -1,6 +1,6 @@
 # Dual-signal Transformation LSTM Network
 
-Implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise suppression.
+Tensorflow 2.x implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise suppression.
 
 
 This model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) of Interspeech 2020. 
@@ -34,7 +34,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ### Python dependencies:
 
 The following packages will be required for this repository:
-* tensorflow (2.x)
+* TensorFlow (2.x)
 * librosa
 * wavinfo 
 
