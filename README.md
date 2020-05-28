@@ -97,8 +97,8 @@ For measuring the execution time call:
 ```
 $ python measure_execution_time.py
 ```
-When measuring with TF 2.2 following results were obtained:
-System | Processor | #Cores | Execution Time 
+When measuring with TF 2.2 following mean execution times were obtained for one 32 ms block:
+System | Processor | #Cores | Execution Time
 --- | --- | --- | ---
 Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms
 Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms 
