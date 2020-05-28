@@ -78,12 +78,12 @@ Important here for real time block by block processing is, to make the LSTM laye
 
 The model can be imported with 
 ```python
-model = tf.saved_model.load('name_save_path’)
+model = tf.saved_model.load('name_save_path')
 ```
 
 For inference we now first call this for mapping signature names to functions
 ```python
-infer = model.signatures[‘serving_default’]
+infer = model.signatures['serving_default']
 ```
 
 and now for inferring the block `x` call
