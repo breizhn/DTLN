@@ -30,7 +30,7 @@ import numpy as np
 class audio_generator():
     '''
     Class to create a Tensorflow dataset based on an iterator from a large scale 
-    audio dataset.
+    audio dataset. This audio generator only supports single channel audio files.
     '''
     
     def __init__(self, path_to_input, path_to_s1, len_of_samples, fs, train_flag=False):
@@ -86,6 +86,9 @@ class audio_generator():
             # check if the sampling rates are matching the specifications
             if fs_1 != self.fs or fs_2 != self.fs:
                 raise ValueError('Sampling rates do not match.')
+            if noisy.ndim != 1 or speech.ndim != 1:
+                raise ValueError('Too many audio channels. The DTLN audio_generator \
+                                 only supports single channel audio data.')
             # count the number of samples in one file
             num_samples = int(np.fix(noisy.shape[0]/self.len_of_samples))
             # iterate over the number of samples
