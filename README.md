@@ -120,7 +120,7 @@ Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 ### Citing:
 
 
-```
+```tex
 @article{westhausen2020dual,
   title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
   author={Westhausen, Nils L and Meyer, Bernd T},
