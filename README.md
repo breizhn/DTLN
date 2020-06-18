@@ -44,7 +44,7 @@ All additional packages (numpy, soundfile, etc.) should be installed on the fly 
 Conda environments for training (with cuda) and for evaluation (CPU only) can be created as following:
 
 For the training environment:
-```
+```shell
 $ conda env create -f train_env.yml
 ```
 For the evaluation environment:
@@ -120,10 +120,11 @@ Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 ### Citing:
 
 
-```tex
+```BibTex
 @article{westhausen2020dual,
   title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
   author={Westhausen, Nils L and Meyer, Bernd T},
   journal={arXiv preprint arXiv:2005.07551},
   year={2020}
 }
+```
