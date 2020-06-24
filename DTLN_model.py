@@ -269,7 +269,7 @@ class DTLN_model():
 
 
 
-    def build_DTLN_model(self):
+    def build_DTLN_model(self, norm_stft=False):
         '''
         Method to build and compile the DTLN model. The model takes time domain 
         batches of size (batchsize, len_in_samples) and returns enhanced clips 
@@ -284,8 +284,14 @@ class DTLN_model():
         time_dat = Input(batch_shape=(None, None))
         # calculate STFT
         mag,angle = Lambda(self.stftLayer)(time_dat)
+        # normalizing log magnitude stfts to get more robust against level variations
+        if norm_stft:
+            mag_norm = InstantLayerNormalization()(tf.math.log(mag + 1e-7))
+        else:
+            # behaviour like in the paper
+            mag_norm = mag
         # predicting mask with separation kernel  
-        mask_1 = self.seperation_kernel(self.numLayer, (self.blockLen//2+1), mag)
+        mask_1 = self.seperation_kernel(self.numLayer, (self.blockLen//2+1), mag_norm)
         # multiply mask with magnitude
         estimated_mag = Multiply()([mag, mask_1])
         # transform frames back to time domain
