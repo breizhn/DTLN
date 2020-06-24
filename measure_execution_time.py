@@ -22,7 +22,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]=''
 
 if __name__ == '__main__':
     # loading model in saved model format
-    model = tf.saved_model.load('./dtln_saved_model')
+    model = tf.saved_model.load('./pretrained_model/dtln_saved_model')
     # mapping signature names to functions
     infer = model.signatures["serving_default"]
         
