@@ -29,7 +29,7 @@ DTLN norm (40h) | 3.05 | 94.57 | 16.88 | 2.2
 The normalization of the log magnitude of the STFT does not decrease the model performance and makes it more robust against level variations.
 
 
-With data argumantation during training it is possible do train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
+With data augmentation during training it is possible to train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
 
 ---
 ### Contents of the repository:
