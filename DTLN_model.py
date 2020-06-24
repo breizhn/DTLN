@@ -364,8 +364,7 @@ class DTLN_model():
         # multiply encoded frames with the mask
         estimated = Multiply()([encoded_frames, mask_2]) 
         # decode the frames back to time domain
-        decoded = Conv1D(self.blockLen, 1, padding='causal',use_bias=False)(estimated)
-        decoded_frame = tf.squeeze(decoded, axis=1)
+        decoded_frame = Conv1D(self.blockLen, 1, padding='causal',use_bias=False)(estimated)
         # create the model
         self.model = Model(inputs=time_dat, outputs=decoded_frame)
         # show the model summary
