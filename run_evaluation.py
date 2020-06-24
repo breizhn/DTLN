@@ -110,10 +110,15 @@ if __name__ == '__main__':
     parser.add_argument('--model', '-m',
                         help='weights of the enhancement model in .h5 format')
     args = parser.parse_args()
+    # determine type of model
+    if args.model.find('_norm_') != -1:
+        norm_stft = True
+    else:
+        norm_stft = False
     # create class instance
     modelClass = DTLN_model();
     # build the model in default configuration
-    modelClass.build_DTLN_model()
+    modelClass.build_DTLN_model(norm_stft=norm_stft)
     # load weights of the .h5 file
     modelClass.model.load_weights(args.model)
     # process the folder
