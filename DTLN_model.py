@@ -393,7 +393,7 @@ class DTLN_model():
         else:
             norm_stft = False
         # build model    
-        self.build_DTLN_model_stateful(self, norm_stft=norm_stft)
+        self.build_DTLN_model_stateful(norm_stft=norm_stft)
         # load weights
         self.model.load_weights(weights_file)
         # save model
