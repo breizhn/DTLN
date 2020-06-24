@@ -15,6 +15,23 @@ For more information see the [paper](http://arxiv.org/abs/2005.07551). The resul
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
 
 ---
+### Results:
+
+Results on the DNS-Challenge non reverberant test set:
+Model | PESQ [mos] | STOI [%] | SI-SDR [dB] | TF version
+--- | --- | --- | --- | ---
+unprocessed | 2.45 | 91.52 | 9.07 |
+NsNet (Baseline) | 2.70 | 90.56 | 12.57 |
+DTLN (500h) | 3.04 | 94.76 | 16.34 | 2.1
+DTLN norm (500h) | 3.04 | 94.47 | 16.10 | 2.2
+DTLN norm (40h) | 3.05 | 94.57 | 16.88 | 2.2
+
+The normalization of the log magnitude of the STFT does not decrease the model performance and makes it more robust against level variations.
+
+
+With data argumantation during training it is possible do train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
+
+---
 ### Contents of the repository:
 
 *  **DTLN_model.py** \
