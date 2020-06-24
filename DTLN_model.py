@@ -6,7 +6,7 @@ For running the training see "run_training.py".
 To run evaluation with the provided pretrained model see "run_evaluation.py".
 
 Author: Nils L. Westhausen (nils.westhausen@uol.de)
-Version: 13.05.2020
+Version: 24.06.2020
 
 This code is licensed under the terms of the MIT-license.
 """
@@ -216,6 +216,23 @@ class DTLN_model():
         phase = tf.math.angle(stft_dat)
         # returning magnitude and phase as list
         return [mag, phase]
+    
+    def fftLayer(self, x):
+        '''
+        Method for an fft helper layer used with a Lambda layer. The layer
+        calculates the rFFT on the last dimension and returns the magnitude and
+        phase of the STFT.
+        '''
+        
+        # expanding dimensions
+        frame = tf.expand_dims(x, axis=1)
+        # calculating the fft over the time frames. rfft returns NFFT/2+1 bins.
+        stft_dat = tf.signal.rfft(frame)
+        # calculating magnitude and phase from the complex signal
+        mag = tf.abs(stft_dat)
+        phase = tf.math.angle(stft_dat)
+        # returning magnitude and phase as list
+        return [mag, phase]
 
  
         
@@ -244,7 +261,7 @@ class DTLN_model():
     
         
 
-    def seperation_kernel(self, num_layer, mask_size, x):
+    def seperation_kernel(self, num_layer, mask_size, x, stateful=False):
         '''
         Method to create a separation kernel. 
         !! Important !!: Do not use this layer with a Lambda layer. If used with
@@ -257,7 +274,7 @@ class DTLN_model():
 
         # creating num_layer number of LSTM layers
         for idx in range(num_layer):
-            x = LSTM(self.numUnits, return_sequences=True)(x)
+            x = LSTM(self.numUnits, return_sequences=True, stateful=stateful)(x)
             # using dropout between the LSTM layer for regularization 
             if idx<(num_layer-1):
                 x = Dropout(self.dropout)(x)
@@ -315,6 +332,45 @@ class DTLN_model():
         # show the model summary
         print(self.model.summary())
         
+    def build_DTLN_model_stateful(self, norm_stft=False):
+        '''
+        Method to build stateful DTLN model for real time processing. The model 
+        takes one time domain frame of size (1, blockLen) and one enhanced frame. 
+         
+        '''
+        
+        # input layer for time signal
+        time_dat = Input(batch_shape=(1, self.blockLen))
+        # calculate STFT
+        mag,angle = Lambda(self.fftLayer)(time_dat)
+        # normalizing log magnitude stfts to get more robust against level variations
+        if norm_stft:
+            mag_norm = InstantLayerNormalization()(tf.math.log(mag + 1e-7))
+        else:
+            # behaviour like in the paper
+            mag_norm = mag
+        # predicting mask with separation kernel  
+        mask_1 = self.seperation_kernel(self.numLayer, (self.blockLen//2+1), mag_norm, stateful=True)
+        # multiply mask with magnitude
+        estimated_mag = Multiply()([mag, mask_1])
+        # transform frames back to time domain
+        estimated_frames_1 = Lambda(self.ifftLayer)([estimated_mag,angle])
+        # encode time domain frames to feature domain
+        encoded_frames = Conv1D(self.encoder_size,1,strides=1,use_bias=False)(estimated_frames_1)
+        # normalize the input to the separation kernel
+        encoded_frames_norm = InstantLayerNormalization()(encoded_frames)
+        # predict mask based on the normalized feature frames
+        mask_2 = self.seperation_kernel(self.numLayer, self.encoder_size, encoded_frames_norm, stateful=True)
+        # multiply encoded frames with the mask
+        estimated = Multiply()([encoded_frames, mask_2]) 
+        # decode the frames back to time domain
+        decoded = Conv1D(self.blockLen, 1, padding='causal',use_bias=False)(estimated)
+        decoded_frame = tf.squeeze(decoded, axis=1)
+        # create the model
+        self.model = Model(inputs=time_dat, outputs=decoded_frame)
+        # show the model summary
+        print(self.model.summary())
+        
     def compile_model(self):
         '''
         Method to compile the model for training
@@ -325,6 +381,23 @@ class DTLN_model():
         optimizerAdam = keras.optimizers.Adam(lr=self.lr, clipnorm=3.0)
         # compile model with loss function
         self.model.compile(loss=self.lossWrapper(), optimizer=optimizerAdam)
+        
+    def create_saved_model(self, weights_file, target_name):
+        '''
+        Method to create a saved model folder from a weights file
+
+        '''
+        # check for type
+        if weights_file.find('_norm_') != -1:
+            norm_stft = True
+        else:
+            norm_stft = False
+        # build model    
+        self.build_DTLN_model_stateful(self, norm_stft=norm_stft)
+        # load weights
+        self.model.load_weights(weights_file)
+        # save model
+        tf.saved_model.save(self.model, target_name)
         
     
     def train_model(self, runName, path_to_train_mix, path_to_train_speech, \
