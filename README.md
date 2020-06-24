@@ -44,9 +44,11 @@ With data augmentation during training it is possible to train the DTLN model on
   The evaluation script will create the new folder with the same structure as the input folder and the files will have the same name as the input files.
 * **measure_execution_time.py** \
   Script for measuring the execution time with the saved DTLN model in `./dtln_saved_model/`. For further information see this [section](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format).
-*  **pretrained_model/model.h5** \
-  The model weights as used in the DNS-Challenge DTLN model.
-
++  **./pretrained_model/** \
+   * `model.h5`: Model weights as used in the DNS-Challenge DTLN model.
+   * `DTLN_norm_500h.h5`: Model weights trained on 500h with normalization of stft log magnitudes.
+   * `DTLN_norm_40h.h5`: Model weights trained on 40h with normalization of stft log magnitudes.
+   
 ---
 ### Python dependencies:
 
