@@ -151,4 +151,3 @@ Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 }
 ```
 
-![](out.wav)
