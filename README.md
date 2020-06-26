@@ -14,6 +14,20 @@ For more information see the [paper](http://arxiv.org/abs/2005.07551). The resul
 \
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
 
+
+---
+### Citing:
+
+
+```BibTex
+@article{westhausen2020dual,
+  title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
+  author={Westhausen, Nils L and Meyer, Bernd T},
+  journal={arXiv preprint arXiv:2005.07551},
+  year={2020}
+}
+```
+
 ---
 ### Results:
 
@@ -53,13 +67,15 @@ Noisy | Enhanced
   The evaluation script will create the new folder with the same structure as the input folder and the files will have the same name as the input files.
 * **measure_execution_time.py** \
   Script for measuring the execution time with the saved DTLN model in `./pretrained_model/dtln_saved_model/`. For further information see this [section](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format).
+* **real_time_processing.py** \
+  Script, which explains how real time processing with the SavedModel works. For more information see this [section](#real-time-processing-with-the-savedmodel).
 +  **./pretrained_model/** \
    * `model.h5`: Model weights as used in the DNS-Challenge DTLN model.
    * `DTLN_norm_500h.h5`: Model weights trained on 500h with normalization of stft log magnitudes.
    * `DTLN_norm_40h.h5`: Model weights trained on 40h with normalization of stft log magnitudes.
-   * `./dtln_saved_model`: same as `model.h5` but as a stateful model in saved model format
-   * `./DTLN_norm_500h_saved_model`: same as `DTLN_norm_500h.h5` but as a stateful model in saved model format
-   * `./DTLN_norm_40h_saved_model`: same as `DTLN_norm_40h.h5` but as a stateful model in saved model format
+   * `./dtln_saved_model`: same as `model.h5` but as a stateful model in SavedModel format
+   * `./DTLN_norm_500h_saved_model`: same as `DTLN_norm_500h.h5` but as a stateful model in SavedModel format
+   * `./DTLN_norm_40h_saved_model`: same as `DTLN_norm_40h.h5` but as a stateful model in SavedModel format
    
 ---
 ### Python dependencies:
@@ -148,15 +164,12 @@ Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 
 
 ---
-### Citing:
+### Real time processing with the SavedModel:
 
+For explanation look at `real_time_processing.py`. 
 
-```BibTex
-@article{westhausen2020dual,
-  title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
-  author={Westhausen, Nils L and Meyer, Bernd T},
-  journal={arXiv preprint arXiv:2005.07551},
-  year={2020}
-}
-```
-
+Here some consideration for integrating this model in your project:
+* The sampling rate of this model is fixed at 16 kHz. It will not work smoothly with other sampling rates.
+* The block length of 32 ms and the block shift of 8 ms are also fixed. For changing these values, the model must be retrained.
+* The delay created by the model is the block length, so the input-output delay is 32 ms.
+* If can not give you support on the hardware side, regarding soundcards, drivers and so on. Be aware, a lot of artifacts can come from this side.
