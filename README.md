@@ -162,6 +162,7 @@ Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms
 Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms 
 Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 
+For real time capability the execution time must be below 8 ms. With SavedModel it is not real time capable on a Raspberry Pi 3 B+.
 
 ---
 ### Real time processing with the SavedModel:
@@ -172,4 +173,5 @@ Here some consideration for integrating this model in your project:
 * The sampling rate of this model is fixed at 16 kHz. It will not work smoothly with other sampling rates.
 * The block length of 32 ms and the block shift of 8 ms are also fixed. For changing these values, the model must be retrained.
 * The delay created by the model is the block length, so the input-output delay is 32 ms.
+* For real time capability on your system, the execution time must be below the length of the block shift, so below 8 ms. 
 * If can not give you support on the hardware side, regarding soundcards, drivers and so on. Be aware, a lot of artifacts can come from this side.
