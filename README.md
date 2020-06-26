@@ -28,6 +28,20 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 }
 ```
 
+
+---
+### Contents of the README:
+
+* [Results](#results)
+* [Audio Samples](#audio-samples)
+* [Contents of the repository](#contents-of-the-repository)
+* [Python dependencies](#python-dependencies)
+* [Training data preparation](#training-data-preparation)
+* [Run a training of the DTLN model](#run-a-training-of-the-dtln-model)
+* [Measuring the execution time of the DTLN model with the SavedModel format](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format)
+* [Real time processing with the SavedModel format](#real-time-processing-with-the-savedmodel-format)
+
+
 ---
 ### Results:
 
@@ -45,6 +59,8 @@ The normalization of the log magnitude of the STFT does not decrease the model p
 
 With data augmentation during training it is possible to train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
 
+[To contents](#contents-of-the-readme)
+
 ---
 ### Audio Samples:
 
@@ -53,6 +69,8 @@ Here just a first audio sample. Sadly audio can not be integrated directly into 
 Noisy | Enhanced
 --- | --- 
 [Sample 1](https://cloudsync.uol.de/s/GFHzmWWJAwgQPLf) | [Sample 1](https://cloudsync.uol.de/s/p3M48y7cjkJ2ZZg)
+
+[To contents](#contents-of-the-readme)
 
 ---
 ### Contents of the repository:
@@ -68,7 +86,7 @@ Noisy | Enhanced
 * **measure_execution_time.py** \
   Script for measuring the execution time with the saved DTLN model in `./pretrained_model/dtln_saved_model/`. For further information see this [section](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format).
 * **real_time_processing.py** \
-  Script, which explains how real time processing with the SavedModel works. For more information see this [section](#real-time-processing-with-the-savedmodel).
+  Script, which explains how real time processing with the SavedModel works. For more information see this [section](#real-time-processing-with-the-savedmodel-format).
 +  **./pretrained_model/** \
    * `model.h5`: Model weights as used in the DNS-Challenge DTLN model.
    * `DTLN_norm_500h.h5`: Model weights trained on 500h with normalization of stft log magnitudes.
@@ -76,6 +94,8 @@ Noisy | Enhanced
    * `./dtln_saved_model`: same as `model.h5` but as a stateful model in SavedModel format
    * `./DTLN_norm_500h_saved_model`: same as `DTLN_norm_500h.h5` but as a stateful model in SavedModel format
    * `./DTLN_norm_40h_saved_model`: same as `DTLN_norm_40h.h5` but as a stateful model in SavedModel format
+   
+[To contents](#contents-of-the-readme)
    
 ---
 ### Python dependencies:
@@ -99,6 +119,8 @@ For the evaluation environment:
 $ conda env create -f eval_env.yml
 ```
 
+[To contents](#contents-of-the-readme)
+
 ---
 ### Training data preparation:
 
@@ -107,6 +129,8 @@ $ conda env create -f eval_env.yml
 2. Run `noisyspeech_synthesizer_multiprocessing.py` to create the dataset. `noisyspeech_synthesizer.cfg`was changed according to my training setup used for the DNS-Challenge. 
 
 3. Run `split_dns_corpus.py`to divide the dataset in training and validation data. The classic 80:20 split is applied. This file was added to the forked repository by me.
+
+[To contents](#contents-of-the-readme)
 
 ---
 ### Run a training of the DTLN model:
@@ -118,6 +142,8 @@ $ conda env create -f eval_env.yml
 3. Run `$ python run_training.py`. 
 
 One epoch takes around 21 minutes on a Nvidia RTX 2080 Ti when loading the training data from an SSD. 
+
+[To contents](#contents-of-the-readme)
 
 ---
 ### Measuring the execution time of the DTLN model with the SavedModel format:
@@ -164,8 +190,10 @@ Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
 
 For real time capability the execution time must be below 8 ms. With SavedModel it is not real time capable on a Raspberry Pi 3 B+.
 
+[To contents](#contents-of-the-readme)
+
 ---
-### Real time processing with the SavedModel:
+### Real time processing with the SavedModel format:
 
 For explanation look at `real_time_processing.py`. 
 
@@ -175,3 +203,5 @@ Here some consideration for integrating this model in your project:
 * The delay created by the model is the block length, so the input-output delay is 32 ms.
 * For real time capability on your system, the execution time must be below the length of the block shift, so below 8 ms. 
 * If can not give you support on the hardware side, regarding soundcards, drivers and so on. Be aware, a lot of artifacts can come from this side.
+
+[To contents](#contents-of-the-readme)
