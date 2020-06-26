@@ -32,6 +32,15 @@ The normalization of the log magnitude of the STFT does not decrease the model p
 With data augmentation during training it is possible to train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
 
 ---
+### Audio Samples:
+
+Here just a first audio sample. Sadly audio can not be integrated directly into markdown.
+
+Noisy | Enhanced
+--- | --- 
+[Sample 1](https://cloudsync.uol.de/s/GFHzmWWJAwgQPLf) | [Sample 1](https://cloudsync.uol.de/s/p3M48y7cjkJ2ZZg)
+
+---
 ### Contents of the repository:
 
 *  **DTLN_model.py** \
