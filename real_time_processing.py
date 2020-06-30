@@ -9,7 +9,6 @@ Created on Tue Jun 23 16:23:15 2020
 import soundfile as sf
 import numpy as np
 import tensorflow as tf
-import soundcard as sc
 
 
 
