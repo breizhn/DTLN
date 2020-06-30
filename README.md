@@ -40,6 +40,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 * [Run a training of the DTLN model](#run-a-training-of-the-dtln-model)
 * [Measuring the execution time of the DTLN model with the SavedModel format](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format)
 * [Real time processing with the SavedModel format](#real-time-processing-with-the-savedmodel-format)
+* [Real time processing with tf-lite](#real-time-processing-with-tf-lite)
 
 
 ---
@@ -203,5 +204,14 @@ Here some consideration for integrating this model in your project:
 * The delay created by the model is the block length, so the input-output delay is 32 ms.
 * For real time capability on your system, the execution time must be below the length of the block shift, so below 8 ms. 
 * If can not give you support on the hardware side, regarding soundcards, drivers and so on. Be aware, a lot of artifacts can come from this side.
+
+[To contents](#contents-of-the-readme)
+
+---
+### Real time processing with tf-lite:
+
+With TF 2.3 it is finally possible to convert LSTMs to tf-lite. It is still not perfect because the states must be handled seperatly for a stateful model and tf-light does not support complex numbers. That means that the model is splitted in two submodels when converting it to tf-lite and the calculation of the FFT and iFFT is performed outside the model. I provided an example script for explaining, how real time processing with the tf light model works (```real_time_processing_tf_lite.py```). In this script the tf-lite runtime is used. The runtime can be downloaded [here](https://www.tensorflow.org/lite/guide/python). Quantization does not work yet.
+
+Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.7 ms**.
 
 [To contents](#contents-of-the-readme)
