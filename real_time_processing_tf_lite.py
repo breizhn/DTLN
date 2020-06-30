@@ -53,10 +53,9 @@ in_buffer = np.zeros((block_len)).astype('float32')
 out_buffer = np.zeros((block_len)).astype('float32')
 # calculate number of blocks
 num_blocks = (audio.shape[0] - (block_len-block_shift)) // block_shift
-# iterate over the number of blcoks  
 time_array = []      
-test_audio = np.random.randn(128)
-for idx in range(1010): # num_blocks
+# iterate over the number of blcoks  
+for idx in range(num_blocks):
     start_time = time.time()
     # shift values and write to buffer
     in_buffer[:-block_shift] = in_buffer[block_shift:]
