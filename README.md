@@ -65,11 +65,14 @@ With data augmentation during training it is possible to train the DTLN model on
 ---
 ### Audio Samples:
 
-Here just a first audio sample. Sadly audio can not be integrated directly into markdown.
+Here some audio samples created with the tf-lite model. Sadly audio can not be integrated directly into markdown.
 
-Noisy | Enhanced
---- | --- 
-[Sample 1](https://cloudsync.uol.de/s/GFHzmWWJAwgQPLf) | [Sample 1](https://cloudsync.uol.de/s/p3M48y7cjkJ2ZZg)
+Noisy | Enhanced | Noise type
+--- | --- | --- 
+[Sample 1](https://cloudsync.uol.de/s/GFHzmWWJAwgQPLf) | [Sample 1](https://cloudsync.uol.de/s/p3M48y7cjkJ2ZZg) | Air conditioning
+[Sample 2](https://cloudsync.uol.de/s/4Y2PoSpJf7nXx9T) | [Sample 2](https://cloudsync.uol.de/s/QeK4aH5KCELPnko) | Music
+[Sample 3](https://cloudsync.uol.de/s/Awc6oBtnTpb5pY7) | [Sample 3](https://cloudsync.uol.de/s/yNsmDgxH3MPWMTi) | Bus 
+
 
 [To contents](#contents-of-the-readme)
 
