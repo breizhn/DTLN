@@ -2,12 +2,10 @@
 This is an example how to implement real time processing of the DTLN tf light
 model in python.
 
-Please change the name of the .wav file at line 41 before running the sript.
+Please change the name of the .wav file at line 43 before running the sript.
 For .whl files of the tf light runtime go to: 
     https://www.tensorflow.org/lite/guide/python
     
-    
-
 Author: Nils L. Westhausen (nils.westhausen@uol.de)
 Version: 30.06.2020
 
