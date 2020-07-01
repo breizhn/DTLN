@@ -41,6 +41,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 * [Measuring the execution time of the DTLN model with the SavedModel format](#measuring-the-execution-time-of-the-dtln-model-with-the-savedmodel-format)
 * [Real time processing with the SavedModel format](#real-time-processing-with-the-savedmodel-format)
 * [Real time processing with tf-lite](#real-time-processing-with-tf-lite)
+* [Real time audio with sounddevice and tf-lite](#real-time-audio-with-sounddevice-and-tf-lite)
 
 
 ---
@@ -122,6 +123,11 @@ For the evaluation environment:
 ```
 $ conda env create -f eval_env.yml
 ```
+For the tf-lite environment:
+```
+$ conda env create -f tflite_env.yml
+```
+The tf-lite runtime must be downloaded from [here](https://www.tensorflow.org/lite/guide/python).
 
 [To contents](#contents-of-the-readme)
 
@@ -216,5 +222,22 @@ Here some consideration for integrating this model in your project:
 With TF 2.3 it is finally possible to convert LSTMs to tf-lite. It is still not perfect because the states must be handled seperatly for a stateful model and tf-light does not support complex numbers. That means that the model is splitted in two submodels when converting it to tf-lite and the calculation of the FFT and iFFT is performed outside the model. I provided an example script for explaining, how real time processing with the tf light model works (```real_time_processing_tf_lite.py```). In this script the tf-lite runtime is used. The runtime can be downloaded [here](https://www.tensorflow.org/lite/guide/python). Quantization does not work yet.
 
 Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.7 ms**.
+
+[To contents](#contents-of-the-readme)
+
+---
+### Real time audio with sounddevice and tf-lite:
+
+The file ```real_time_dtln_audio.py```is an example how real time audio with the tf-lite model and the [sounddevice](https://github.com/spatialaudio/python-sounddevice) toolbox can be implemented. The script is based on the ```wire.py``` example. It works fine on Macbook Air mid 2012 and so it will probably run on most newer devices.
+
+First check for your audio devices:
+```
+$ python real_time_dtln_audio.py --list-devices
+```
+Choose the index of an input and an output device and call:
+```
+$ python real_time_dtln_audio.py -i in_device_idx -o out_device_idx
+```
+If the script is showing too much ```input underflow``` restart the sript. If that does not help, increase the latency with the ```--latency``` option. The default value is 0.2 .
 
 [To contents](#contents-of-the-readme)
