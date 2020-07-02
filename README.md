@@ -53,11 +53,16 @@ Model | PESQ [mos] | STOI [%] | SI-SDR [dB] | TF version
 --- | --- | --- | --- | ---
 unprocessed | 2.45 | 91.52 | 9.07 |
 NsNet (Baseline) | 2.70 | 90.56 | 12.57 |
+ |  |  |  | 
 DTLN (500h) | 3.04 | 94.76 | 16.34 | 2.1
 DTLN (500h)| 2.98 | 94.75 | 16.20 | TF-light
 DTLN (500h) | 2.95 | 94.47 | 15.71 | TF-light quantized
+ |  |  |  | 
 DTLN norm (500h) | 3.04 | 94.47 | 16.10 | 2.2
+ |  |  |  | 
 DTLN norm (40h) | 3.05 | 94.57 | 16.88 | 2.2
+DTLN norm (40h) | 2.98 | 94.56 | 16.58 | TF-light
+DTLN norm (40h) | 2.98 | 94.51 | 16.22 | TF-light quantized
 
 * The conversion to TF-light slightly reduces the performance. 
 * The dynamic range quantization of TF-light also reduces the performance a bit and introduces some quantization noise. But the audio-quality is still on a high level and the model is real-time capable on the Raspberry Pi 3 B+.
