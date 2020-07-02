@@ -302,7 +302,7 @@ class DTLN_model():
         for idx in range(num_layer):
             in_state = [in_states[:,idx,:, 0], in_states[:,idx,:, 1]]
             x, h_state, c_state = LSTM(self.numUnits, return_sequences=True, 
-                     stateful=False, return_state=True)(x, initial_state=in_state)
+                     unroll=True, return_state=True)(x, initial_state=in_state)
             # using dropout between the LSTM layer for regularization 
             if idx<(num_layer-1):
                 x = Dropout(self.dropout)(x)
@@ -440,8 +440,7 @@ class DTLN_model():
         For further information and how real time processing can be 
         implemented see "real_time_processing_tf_lite.py".
         
-        The conversion only works with TF 2.3. Quatization does not work at 
-        the moment.
+        The conversion only works with TF 2.3.
 
         '''
         # check for type
@@ -503,7 +502,6 @@ class DTLN_model():
         # convert first model
         converter = tf.lite.TFLiteConverter.from_keras_model(model_1)
         if use_dynamic_range_quant:
-            Warning('Loading quantized tf lite model fails.')
             converter.optimizations = [tf.lite.Optimize.DEFAULT]
         tflite_model = converter.convert()
         with tf.io.gfile.GFile(target_name + '_1.tflite', 'wb') as f:
