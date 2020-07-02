@@ -77,8 +77,8 @@ output_details_1 = interpreter_1.get_output_details()
 input_details_2 = interpreter_2.get_input_details()
 output_details_2 = interpreter_2.get_output_details()
 # create states for the lstms
-states_1 = np.zeros(input_details_1[0]['shape']).astype('float32')
-states_2 = np.zeros(input_details_1[0]['shape']).astype('float32')
+states_1 = np.zeros(input_details_1[1]['shape']).astype('float32')
+states_2 = np.zeros(input_details_2[1]['shape']).astype('float32')
 # calculate shift and length
 block_shift = int(np.round(fs_target * (block_shift_ms / 1000)))
 block_len = int(np.round(fs_target * (block_len_ms / 1000)))
@@ -102,8 +102,8 @@ def callback(indata, outdata, frames, time, status):
     # reshape magnitude to input dimensions
     in_mag = np.reshape(in_mag, (1,1,-1)).astype('float32')
     # set tensors to the first model
-    interpreter_1.set_tensor(input_details_1[0]['index'], states_1)
-    interpreter_1.set_tensor(input_details_1[1]['index'], in_mag)
+    interpreter_1.set_tensor(input_details_1[1]['index'], states_1)
+    interpreter_1.set_tensor(input_details_1[0]['index'], in_mag)
     # run calculation 
     interpreter_1.invoke()
     # get the output of the first block
@@ -115,8 +115,8 @@ def callback(indata, outdata, frames, time, status):
     # reshape the time domain block
     estimated_block = np.reshape(estimated_block, (1,1,-1)).astype('float32')
     # set tensors to the second block
-    interpreter_2.set_tensor(input_details_1[0]['index'], states_2)
-    interpreter_2.set_tensor(input_details_1[1]['index'], estimated_block)
+    interpreter_2.set_tensor(input_details_2[1]['index'], states_2)
+    interpreter_2.set_tensor(input_details_2[0]['index'], estimated_block)
     # run calculation
     interpreter_2.invoke()
     # get output tensors
