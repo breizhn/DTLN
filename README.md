@@ -60,7 +60,7 @@ DTLN norm (500h) | 3.04 | 94.47 | 16.10 | 2.2
 DTLN norm (40h) | 3.05 | 94.57 | 16.88 | 2.2
 
 * The conversion to TF-light slightly reduces the performance. 
-* The dynamic range quantization of TF-light also reduces the performance a bit and introduces some quantization noise. But the audio-quality is still on a high level and it is real-time capable on the Raspberry Pi 3 B+.
+* The dynamic range quantization of TF-light also reduces the performance a bit and introduces some quantization noise. But the audio-quality is still on a high level and the model is real-time capable on the Raspberry Pi 3 B+.
 * The normalization of the log magnitude of the STFT does not decrease the model performance and makes it more robust against level variations.
 * With data augmentation during training it is possible to train the DTLN model on just 40h of noise and speech data. This extension together with the creation script for the data and the model weights will be added soon. 
 
