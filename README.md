@@ -245,7 +245,7 @@ Using the tf-lite DTLN model and the tf-lite runtime the execution time on an ol
 ---
 ### Real time audio with sounddevice and tf-lite:
 
-The file ```real_time_dtln_audio.py```is an example how real time audio with the tf-lite model and the [sounddevice](https://github.com/spatialaudio/python-sounddevice) toolbox can be implemented. The script is based on the ```wire.py``` example. It works fine on an old Macbook Air mid 2012 and so it will probably run on most newer devices.
+The file ```real_time_dtln_audio.py```is an example how real time audio with the tf-lite model and the [sounddevice](https://github.com/spatialaudio/python-sounddevice) toolbox can be implemented. The script is based on the ```wire.py``` example. It works fine on an old Macbook Air mid 2012 and so it will probably run on most newer devices. In the quantized version it was sucessfully tested on an Raspberry Pi 3B +.
 
 First check for your audio devices:
 ```
