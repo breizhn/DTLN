@@ -219,9 +219,9 @@ Here some consideration for integrating this model in your project:
 ---
 ### Real time processing with tf-lite:
 
-With TF 2.3 it is finally possible to convert LSTMs to tf-lite. It is still not perfect because the states must be handled seperatly for a stateful model and tf-light does not support complex numbers. That means that the model is splitted in two submodels when converting it to tf-lite and the calculation of the FFT and iFFT is performed outside the model. I provided an example script for explaining, how real time processing with the tf light model works (```real_time_processing_tf_lite.py```). In this script the tf-lite runtime is used. The runtime can be downloaded [here](https://www.tensorflow.org/lite/guide/python). Quantization does not work yet.
+With TF 2.3 it is finally possible to convert LSTMs to tf-lite. It is still not perfect because the states must be handled seperatly for a stateful model and tf-light does not support complex numbers. That means that the model is splitted in two submodels when converting it to tf-lite and the calculation of the FFT and iFFT is performed outside the model. I provided an example script for explaining, how real time processing with the tf light model works (```real_time_processing_tf_lite.py```). In this script the tf-lite runtime is used. The runtime can be downloaded [here](https://www.tensorflow.org/lite/guide/python). Quantization works now.
 
-Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.7 ms**.
+Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.5 ms**.
 
 [To contents](#contents-of-the-readme)
 
