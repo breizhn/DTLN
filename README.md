@@ -33,6 +33,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ### Contents of the README:
 
 * [Results](#results)
+* [Execution Times](#execution-times)
 * [Audio Samples](#audio-samples)
 * [Contents of the repository](#contents-of-the-repository)
 * [Python dependencies](#python-dependencies)
@@ -64,6 +65,22 @@ With data augmentation during training it is possible to train the DTLN model on
 [To contents](#contents-of-the-readme)
 
 ---
+
+### Execution Times:
+
+Execution times for SavedModel are measured with TF 2.2 and for TF-lite with the TF-lite runtime:
+System | Processor | #Cores | SavedModel | TF-lite | TF-lite quantized
+--- | --- | --- | --- | --- | ---
+Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms | 0.36 ms | 0.27 ms
+Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms | 0.6 ms | 0.4 ms
+Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms | 9.6 ms | 2.2 ms
+
+For real time capability the execution time must be below 8 ms.
+
+[To contents](#contents-of-the-readme)
+
+---
+
 ### Audio Samples:
 
 Here some audio samples created with the tf-lite model. Sadly audio can not be integrated directly into markdown.
@@ -191,18 +208,11 @@ For measuring the execution time call:
 ```
 $ python measure_execution_time.py
 ```
-When measuring with TF 2.2 following mean execution times were obtained for one 32 ms block:
-System | Processor | #Cores | Execution Time
---- | --- | --- | ---
-Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms
-Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms 
-Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms
-
-For real time capability the execution time must be below 8 ms. With SavedModel it is not real time capable on a Raspberry Pi 3 B+.
 
 [To contents](#contents-of-the-readme)
 
 ---
+
 ### Real time processing with the SavedModel format:
 
 For explanation look at `real_time_processing.py`. 
