@@ -25,6 +25,9 @@ if __name__ == '__main__':
                         help='path to .h5 weights file')
     parser.add_argument('--target_folder', '-t',
                         help='target folder for saved model')
+    parser.add_argument('--quantization', '-q',
+                        help='use quantization (True/False)',
+                        default='False')
     
     args = parser.parse_args()
     if parse_version(tf.__version__) < parse_version('2.3.0-rc0'):
@@ -33,4 +36,6 @@ if __name__ == '__main__':
     
     
     converter = DTLN_model()
-    converter.create_tf_lite_model(args.weights_file, args.target_folder, use_dynamic_range_quant=False)
+    converter.create_tf_lite_model(args.weights_file, 
+                                   args.target_folder, 
+                                   use_dynamic_range_quant=bool(args.quantization))
