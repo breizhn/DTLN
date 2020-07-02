@@ -37,8 +37,8 @@ output_details_1 = interpreter_1.get_output_details()
 input_details_2 = interpreter_2.get_input_details()
 output_details_2 = interpreter_2.get_output_details()
 # create states for the lstms
-states_1 = np.zeros(input_details_1[0]['shape']).astype('float32')
-states_2 = np.zeros(input_details_1[0]['shape']).astype('float32')
+states_1 = np.zeros(input_details_1[1]['shape']).astype('float32')
+states_2 = np.zeros(input_details_2[1]['shape']).astype('float32')
 # load audio file at 16k fs (please change)
 audio,fs = sf.read('path/to/your/favorite/.wav')
 # check for sampling rate
@@ -70,16 +70,16 @@ for idx in range(num_blocks):
     # run calculation 
     interpreter_1.invoke()
     # get the output of the first block
-    out_mask = interpreter_1.get_tensor(output_details_1[0]['index']) 
-    states_1 = interpreter_1.get_tensor(output_details_1[1]['index'])   
+    out_mask = interpreter_1.get_tensor(output_details_1[1]['index']) 
+    states_1 = interpreter_1.get_tensor(output_details_1[0]['index'])   
     # calculate the ifft
     estimated_complex = in_mag * out_mask * np.exp(1j * in_phase)
     estimated_block = np.fft.irfft(estimated_complex)
     # reshape the time domain block
     estimated_block = np.reshape(estimated_block, (1,1,-1)).astype('float32')
     # set tensors to the second block
-    interpreter_2.set_tensor(input_details_1[0]['index'], states_2)
-    interpreter_2.set_tensor(input_details_1[1]['index'], estimated_block)
+    interpreter_2.set_tensor(input_details_2[1]['index'], states_2)
+    interpreter_2.set_tensor(input_details_2[0]['index'], estimated_block)
     # run calculation
     interpreter_2.invoke()
     # get output tensors
