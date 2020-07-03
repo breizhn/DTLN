@@ -43,6 +43,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 * [Real time processing with the SavedModel format](#real-time-processing-with-the-savedmodel-format)
 * [Real time processing with tf-lite](#real-time-processing-with-tf-lite)
 * [Real time audio with sounddevice and tf-lite](#real-time-audio-with-sounddevice-and-tf-lite)
+* [Model conversion and real time processing with ONNX](#model-conversion-and-real-time-processing-with-onnx)
 
 
 ---
@@ -258,3 +259,19 @@ $ python real_time_dtln_audio.py -i in_device_idx -o out_device_idx
 If the script is showing too much ```input underflow``` restart the sript. If that does not help, increase the latency with the ```--latency``` option. The default value is 0.2 .
 
 [To contents](#contents-of-the-readme)
+
+---
+### Model conversion and real time processing with ONNX:
+
+Finally I got the ONNX model working. 
+For converting the model TF 2.1 and keras2onnx is required. keras2onnx can be downloaded [here](https://github.com/onnx/keras-onnx) and must be installed from source as described in the README. When all dependencies are installed, call:
+```
+$ python convert_weights_to_onnx.py -m /name/of/the/model.h5 -t onnx_model_name
+```
+to convert the model to the ONNX format. The model is split in two parts as for the TF-lite model. The conversion does not work on MacOS.
+The real time processing works similar to the TF-lite model and can be looked up in following file: ```real_time_processing_onnx.py ```
+The ONNX runtime required for this script can be installed with:
+```
+$ pip install onnxruntime
+```
+The execution time on the Macbook Air mid 2012 is 1.13 ms for one block.
