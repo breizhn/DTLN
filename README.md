@@ -121,9 +121,12 @@ Noisy | Enhanced | Noise type
    * `model.h5`: Model weights as used in the DNS-Challenge DTLN model.
    * `DTLN_norm_500h.h5`: Model weights trained on 500h with normalization of stft log magnitudes.
    * `DTLN_norm_40h.h5`: Model weights trained on 40h with normalization of stft log magnitudes.
-   * `./dtln_saved_model`: same as `model.h5` but as a stateful model in SavedModel format
-   * `./DTLN_norm_500h_saved_model`: same as `DTLN_norm_500h.h5` but as a stateful model in SavedModel format
-   * `./DTLN_norm_40h_saved_model`: same as `DTLN_norm_40h.h5` but as a stateful model in SavedModel format
+   * `./dtln_saved_model`: same as `model.h5` but as a stateful model in SavedModel format.
+   * `./DTLN_norm_500h_saved_model`: same as `DTLN_norm_500h.h5` but as a stateful model in SavedModel format.
+   * `./DTLN_norm_40h_saved_model`: same as `DTLN_norm_40h.h5` but as a stateful model in SavedModel format.
+   * `model_1.tflite` together with `model_2.tflite`: same as `model.h5` but as TF-lite model with external state handling.
+   * `model_quant_1.tflite` together with `model_quant_2.tflite`: same as `model.h5` but as TF-lite model with external state handling and dynamic range quantization.
+   * `model_1.onnx` together with `model_2.onnx`: same as `model.h5` but as ONNX model with external state handling.
    
 [To contents](#contents-of-the-readme)
    
