@@ -83,7 +83,7 @@ Ubuntu 18.04         | Intel I5 6600k @ 3.5 GHz | 4 | 0.65 ms | 0.36 ms | 0.27 m
 Macbook Air mid 2012 | Intel I7 3667U @ 2.0 GHz | 2 | 1.4 ms | 0.6 ms | 0.4 ms
 Raspberry Pi 3 B+    | ARM Cortex A53 @ 1.4 GHz | 4 | 15.54 ms | 9.6 ms | 2.2 ms
 
-For real time capability the execution time must be below 8 ms.
+For real-time capability the execution time must be below 8 ms.
 
 [To contents](#contents-of-the-readme)
 
@@ -242,7 +242,7 @@ Here some consideration for integrating this model in your project:
 
 With TF 2.3 it is finally possible to convert LSTMs to tf-lite. It is still not perfect because the states must be handled seperatly for a stateful model and tf-light does not support complex numbers. That means that the model is splitted in two submodels when converting it to tf-lite and the calculation of the FFT and iFFT is performed outside the model. I provided an example script for explaining, how real time processing with the tf light model works (```real_time_processing_tf_lite.py```). In this script the tf-lite runtime is used. The runtime can be downloaded [here](https://www.tensorflow.org/lite/guide/python). Quantization works now.
 
-Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.5 ms**.
+Using the tf-lite DTLN model and the tf-lite runtime the execution time on an old Macbook Air mid 2012 can be decreased to **0.6 ms**.
 
 [To contents](#contents-of-the-readme)
 
@@ -277,4 +277,4 @@ The ONNX runtime required for this script can be installed with:
 ```
 $ pip install onnxruntime
 ```
-The execution time on the Macbook Air mid 2012 is 1.13 ms for one block.
+The execution time on the Macbook Air mid 2012 is around 1.13 ms for one block.
