@@ -32,6 +32,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ---
 ### Contents of the README:
 
+* [Rodemap for improving this repository](#rodemap-for-improving-this-repository)
 * [Results](#results)
 * [Execution Times](#execution-times)
 * [Audio Samples](#audio-samples)
@@ -45,6 +46,17 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 * [Real time audio with sounddevice and tf-lite](#real-time-audio-with-sounddevice-and-tf-lite)
 * [Model conversion and real time processing with ONNX](#model-conversion-and-real-time-processing-with-onnx)
 
+
+---
+### Rodemap for improving this repository:
+
+- [ ] Code refactoring and improving modularity.
+- [ ] Implementation of unit testing.
+- [ ] Maybe a python package.
+
+If you have any suggestions or you would like to contribute, open an issue or contact me directly.
+
+[To contents](#contents-of-the-readme)
 
 ---
 ### Results:
