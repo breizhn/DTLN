@@ -65,13 +65,13 @@ for idx in range(num_blocks):
     # reshape magnitude to input dimensions
     in_mag = np.reshape(in_mag, (1,1,-1)).astype('float32')
     # set tensors to the first model
-    interpreter_1.set_tensor(input_details_1[0]['index'], states_1)
-    interpreter_1.set_tensor(input_details_1[1]['index'], in_mag)
+    interpreter_1.set_tensor(input_details_1[1]['index'], states_1)
+    interpreter_1.set_tensor(input_details_1[0]['index'], in_mag)
     # run calculation 
     interpreter_1.invoke()
     # get the output of the first block
-    out_mask = interpreter_1.get_tensor(output_details_1[1]['index']) 
-    states_1 = interpreter_1.get_tensor(output_details_1[0]['index'])   
+    out_mask = interpreter_1.get_tensor(output_details_1[0]['index']) 
+    states_1 = interpreter_1.get_tensor(output_details_1[1]['index'])   
     # calculate the ifft
     estimated_complex = in_mag * out_mask * np.exp(1j * in_phase)
     estimated_block = np.fft.irfft(estimated_complex)
