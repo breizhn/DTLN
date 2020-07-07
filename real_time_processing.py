@@ -18,7 +18,7 @@ import tensorflow as tf
 block_len = 512
 block_shift = 128
 # load model
-model = tf.saved_model.load('./dtln_saved_model')
+model = tf.saved_model.load('./pretrained_model/dtln_saved_model')
 infer = model.signatures["serving_default"]
 # load audio file at 16k fs (please change)
 audio,fs = sf.read('path_to_your_favorite_audio.wav')
