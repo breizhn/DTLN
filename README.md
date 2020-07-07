@@ -51,6 +51,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 ### Rodemap for improving this repository:
 
 - [ ] Code refactoring and improving modularity.
+- [ ] Restructuring documentation.
 - [ ] Implementation of unit testing.
 - [ ] Maybe a python package.
 
