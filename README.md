@@ -1,9 +1,11 @@
 # Dual-signal Transformation LSTM Network
 
-Tensorflow 2.x implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise suppression.
++ Tensorflow 2.x implementation of the stacked dual-signal transformation LSTM network (DTLN) for real-time noise suppression.
++ This repository provides the code for training, infering and serving the DTLN model in python. It also provides pretrained models in SavedModel, TF-lite and ONNX format, which can be used as baseline for your own projects. The model is able to run with real time audio on a RaspberryPi.
++ If you are doing cool things with this repo, tell me about it. I am always curious about what you are doing with this code or this models.
 
 
-This model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) of Interspeech 2020. 
+The DTLN model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) of Interspeech 2020. 
 
 
 This approach combines a short-time Fourier transform (STFT) and a learned analysis and synthesis basis in a stacked-network approach with less than one million parameters. The model was trained on 500h of noisy speech provided by the challenge organizers. The network is capable of real-time processing (one frame in, one frame out) and reaches competitive results.
@@ -14,10 +16,13 @@ For more information see the [paper](http://arxiv.org/abs/2005.07551). The resul
 \
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
 
+This code is licensed under the terms of the MIT license.
+
 
 ---
 ### Citing:
 
+If you are using the DTLN model, please cite:
 
 ```BibTex
 @article{westhausen2020dual,
@@ -55,7 +60,7 @@ Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunik
 - [ ] Implementation of unit testing.
 - [ ] Maybe a python package.
 
-If you have any suggestions or you would like to contribute, open an issue or contact me directly.
+If you have any suggestions, question or you would like to contribute, open an issue or contact me directly.
 
 [To contents](#contents-of-the-readme)
 
