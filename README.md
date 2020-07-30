@@ -5,13 +5,13 @@
 + If you are doing cool things with this repo, tell me about it. I am always curious about what you are doing with this code or this models.
 
 
-The DTLN model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) of Interspeech 2020. 
+The DTLN model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) and the paper is accepted to Interspeech 2020. 
 
 
 This approach combines a short-time Fourier transform (STFT) and a learned analysis and synthesis basis in a stacked-network approach with less than one million parameters. The model was trained on 500h of noisy speech provided by the challenge organizers. The network is capable of real-time processing (one frame in, one frame out) and reaches competitive results.
 Combining these two types of signal transformations enables the DTLN to robustly extract information from magnitude spectra and incorporate phase information from the learned feature basis. The method shows state-of-the-art performance and outperforms the DNS-Challenge baseline by 0.24 points absolute in terms of the mean opinion score (MOS).
 
-For more information see the [paper](http://arxiv.org/abs/2005.07551). The results of the DNS-Challenge are published [here](https://dns-challenge.azurewebsites.net/phase1results). We reached a competitive 8th place out of 17 teams in the real time track.
+For more information see the [paper](http://arxiv.org/abs/2005.07551). The results of the DNS-Challenge are published [here](https://dns-challenge.azurewebsites.net/phase1results). We reached a competitive 8th place out of 17 teams in the real time track. The final ranking will come in end of October.
 \
 \
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
