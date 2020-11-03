@@ -11,7 +11,14 @@ The DTLN model was handed in to the deep noise suppression challenge ([DNS-Chall
 This approach combines a short-time Fourier transform (STFT) and a learned analysis and synthesis basis in a stacked-network approach with less than one million parameters. The model was trained on 500h of noisy speech provided by the challenge organizers. The network is capable of real-time processing (one frame in, one frame out) and reaches competitive results.
 Combining these two types of signal transformations enables the DTLN to robustly extract information from magnitude spectra and incorporate phase information from the learned feature basis. The method shows state-of-the-art performance and outperforms the DNS-Challenge baseline by 0.24 points absolute in terms of the mean opinion score (MOS).
 
-For more information see the [paper](http://arxiv.org/abs/2005.07551). The results of the DNS-Challenge are published [here](https://dns-challenge.azurewebsites.net/phase1results). We reached a competitive 8th place out of 17 teams in the real time track. The final ranking will be published on the end of October.
+For more information see the [paper](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/2631.pdf). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/dns-challenge/interspeech2020/finalresults). We reached a competitive 8th place out of 17 teams in the real time track.
+
+For baseline usage and to reproduce the processing used for the paper run:
+```bash
+$ python run_evaluation.py -i in/folder/with/wav -o target/folder/processed/files -m ./pretrained_model/model.h5
+```
+
+For more information see the [paper](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/2631.pdf). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/dns-challenge/interspeech2020/finalresults). We reached a competitive 8th place out of 17 teams in the real time track.
 \
 \
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
@@ -25,11 +32,14 @@ This code is licensed under the terms of the MIT license.
 If you are using the DTLN model, please cite:
 
 ```BibTex
-@article{westhausen2020dual,
-  title={Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression},
-  author={Westhausen, Nils L and Meyer, Bernd T},
-  journal={arXiv preprint arXiv:2005.07551},
-  year={2020}
+@inproceedings{Westhausen2020,
+  author={Nils L. Westhausen and Bernd T. Meyer},
+  title={{Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression}},
+  year=2020,
+  booktitle={Proc. Interspeech 2020},
+  pages={2477--2481},
+  doi={10.21437/Interspeech.2020-2631},
+  url={http://dx.doi.org/10.21437/Interspeech.2020-2631}
 }
 ```
 
@@ -52,17 +62,6 @@ If you are using the DTLN model, please cite:
 * [Model conversion and real time processing with ONNX](#model-conversion-and-real-time-processing-with-onnx)
 
 
----
-### Rodemap for improving this repository:
-
-- [ ] Code refactoring and improving modularity.
-- [ ] Restructuring documentation.
-- [ ] Implementation of unit testing.
-- [ ] Maybe a python package.
-
-If you have any suggestions, question or you would like to contribute, open an issue or contact me directly.
-
-[To contents](#contents-of-the-readme)
 
 ---
 ### Results:
