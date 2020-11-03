@@ -47,7 +47,6 @@ If you are using the DTLN model, please cite:
 ---
 ### Contents of the README:
 
-* [Rodemap for improving this repository](#rodemap-for-improving-this-repository)
 * [Results](#results)
 * [Execution Times](#execution-times)
 * [Audio Samples](#audio-samples)
