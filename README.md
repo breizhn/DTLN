@@ -4,8 +4,9 @@
 + This repository provides the code for training, infering and serving the DTLN model in python. It also provides pretrained models in SavedModel, TF-lite and ONNX format, which can be used as baseline for your own projects. The model is able to run with real time audio on a RaspberryPi.
 + If you are doing cool things with this repo, tell me about it. I am always curious about what you are doing with this code or this models.
 
+---
 
-The DTLN model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) and the paper is accepted to Interspeech 2020. 
+The DTLN model was handed in to the deep noise suppression challenge ([DNS-Challenge](https://github.com/microsoft/DNS-Challenge)) and the paper was presented at Interspeech 2020. 
 
 
 This approach combines a short-time Fourier transform (STFT) and a learned analysis and synthesis basis in a stacked-network approach with less than one million parameters. The model was trained on 500h of noisy speech provided by the challenge organizers. The network is capable of real-time processing (one frame in, one frame out) and reaches competitive results.
@@ -13,14 +14,16 @@ Combining these two types of signal transformations enables the DTLN to robustly
 
 For more information see the [paper](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/2631.pdf). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/dns-challenge/interspeech2020/finalresults). We reached a competitive 8th place out of 17 teams in the real time track.
 
+---
+
 For baseline usage and to reproduce the processing used for the paper run:
 ```bash
 $ python run_evaluation.py -i in/folder/with/wav -o target/folder/processed/files -m ./pretrained_model/model.h5
 ```
 
-For more information see the [paper](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/2631.pdf). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/dns-challenge/interspeech2020/finalresults). We reached a competitive 8th place out of 17 teams in the real time track.
-\
-\
+---
+
+
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
 
 This code is licensed under the terms of the MIT license.
