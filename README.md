@@ -23,6 +23,9 @@ $ python run_evaluation.py -i in/folder/with/wav -o target/folder/processed/file
 
 ---
 
+The pretrained DTLN-aec (the DTLN applied to acoustic echo cancellation) can be found in the [DTLN-aec repository](https://github.com/breizhn/DTLN-aec).
+
+---
 
 Author: Nils L. Westhausen ([Communication Acoustics](https://uol.de/en/kommunikationsakustik) , Carl von Ossietzky University, Oldenburg, Germany)
 
