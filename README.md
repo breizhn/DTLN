@@ -12,7 +12,7 @@ The DTLN model was handed in to the deep noise suppression challenge ([DNS-Chall
 This approach combines a short-time Fourier transform (STFT) and a learned analysis and synthesis basis in a stacked-network approach with less than one million parameters. The model was trained on 500h of noisy speech provided by the challenge organizers. The network is capable of real-time processing (one frame in, one frame out) and reaches competitive results.
 Combining these two types of signal transformations enables the DTLN to robustly extract information from magnitude spectra and incorporate phase information from the learned feature basis. The method shows state-of-the-art performance and outperforms the DNS-Challenge baseline by 0.24 points absolute in terms of the mean opinion score (MOS).
 
-For more information see the [paper](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/2631.pdf). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/dns-challenge/interspeech2020/finalresults). We reached a competitive 8th place out of 17 teams in the real time track.
+For more information see the [paper](https://www.isca-speech.org/archive/interspeech_2020/westhausen20_interspeech.html). The results of the DNS-Challenge are published [here](https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-interspeech-2020/#!results). We reached a competitive 8th place out of 17 teams in the real time track.
 
 ---
 
