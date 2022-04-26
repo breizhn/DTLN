@@ -45,11 +45,17 @@ def process_file(model, audio_file_name, out_file_name):
     
     # read audio file with librosa to handle resampling and enforce mono
     in_data,fs = librosa.core.load(audio_file_name, sr=16000, mono=True)
+    # get length of file
+    len_orig = len(in_data)
+    # pad audio
+    zero_pad = np.zeros(384)
+    in_data = np.concatenate((zero_pad, in_data, zero_pad), axis=0)
     # predict audio with the model
     predicted = model.predict_on_batch(
         np.expand_dims(in_data,axis=0).astype(np.float32))
     # squeeze the batch dimension away
     predicted_speech = np.squeeze(predicted)
+    predicted_speech = predicted_speech[384:384+len_orig]
     # write the file to target destination
     sf.write(out_file_name, predicted_speech,fs)
       
