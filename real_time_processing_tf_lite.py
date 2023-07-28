@@ -85,7 +85,10 @@ for idx in range(num_blocks):
     # get output tensors
     out_block = interpreter_2.get_tensor(output_details_2[0]['index']) 
     states_2 = interpreter_2.get_tensor(output_details_2[1]['index']) 
-    
+
+    #if more than 50% overlap, add scale factor to keep same amplitude as the input signal
+    if block_shift/block_len < 1/2:
+        out_block *= (block_shift/block_len)
     
     # shift values and write to buffer
     out_buffer[:-block_shift] = out_buffer[block_shift:]

@@ -91,6 +91,11 @@ for idx in range(num_blocks):
     out_block = model_outputs_2[0]
     # set out states back to input
     model_inputs_2[model_input_names_2[1]] = model_outputs_2[1]
+
+    #if more than 50% overlap, add scale factor to keep same amplitude as the input signal
+    if block_shift/block_len < 1/2:
+        out_block *= (block_shift/block_len)
+        
     # shift values and write to buffer
     out_buffer[:-block_shift] = out_buffer[block_shift:]
     out_buffer[-block_shift:] = np.zeros((block_shift))

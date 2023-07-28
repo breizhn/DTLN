@@ -248,14 +248,16 @@ class DTLN_model():
                     tf.exp( (1j * tf.cast(x[1], tf.complex64))))
         # returning the time domain frames
         return tf.signal.irfft(s1_stft)  
-    
-    
+     
     def overlapAddLayer(self, x):
         '''
         Method for an overlap and add helper layer used with a Lambda layer.
         This layer reconstructs the waveform from a framed signal.
         '''
 
+        #if more than 50% overlap, add scale factor to keep same amplitude as the input signal
+        if self.block_shift/self.blockLen < 1/2:
+            x *= (self.block_shift/self.blockLen)
         # calculating and returning the reconstructed waveform
         return tf.signal.overlap_and_add(x, self.block_shift)
     

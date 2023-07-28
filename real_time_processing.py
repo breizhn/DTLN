@@ -41,6 +41,11 @@ for idx in range(num_blocks):
     in_block = np.expand_dims(in_buffer, axis=0).astype('float32')
     # process one block
     out_block= infer(tf.constant(in_block))['conv1d_1']
+
+    #if more than 50% overlap, add scale factor to keep same amplitude as the input signal
+    if block_shift/block_len < 1/2:
+        out_block *= (block_shift/block_len)
+        
     # shift values and write to buffer
     out_buffer[:-block_shift] = out_buffer[block_shift:]
     out_buffer[-block_shift:] = np.zeros((block_shift))

@@ -122,6 +122,11 @@ def callback(indata, outdata, frames, time, status):
     # get output tensors
     out_block = interpreter_2.get_tensor(output_details_2[0]['index']) 
     states_2 = interpreter_2.get_tensor(output_details_2[1]['index']) 
+
+    #if more than 50% overlap, add scale factor to keep same amplitude as the input signal
+    if block_shift/block_len < 1/2:
+        out_block *= (block_shift/block_len)
+        
     # write to buffer
     out_buffer[:-block_shift] = out_buffer[block_shift:]
     out_buffer[-block_shift:] = np.zeros((block_shift))
